@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.esther.controledefinancas.frontend.controllers.MainController">
+    <top>
+        <Label text="Sistema de Controle de Finanças" />
+    </top>
+    <center>
+        <VBox spacing="10" alignment="CENTER">
+            <Button fx:id="btnConta" text="Cadastrar Conta" onAction="#abrirTelaConta" />
+            <Button fx:id="btnCartao" text="Cadastrar Cartão" onAction="#abrirTelaCartao" />
+            <Button fx:id="btnCompras" text="Gerenciar Compras" onAction="#abrirCompras" />
+            <Button fx:id="btnRelatorios" text="Gerenciar Relatórios" onAction="#abrirRelatorios" />
+        </VBox>
+    </center>
+</BorderPane>
