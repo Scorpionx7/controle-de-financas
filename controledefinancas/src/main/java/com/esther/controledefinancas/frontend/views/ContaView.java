@@ -23,16 +23,16 @@ public class ContaView extends Application {
         grid.setVgap(10);
 
         // Campos do formulário
-        Label lblNome = new Label("Nome da Conta:");
+        Label lblNome = new Label("Account name:");
         TextField txtNome = new TextField();
 
-        Label lblSaldo = new Label("Saldo Disponível:");
+        Label lblSaldo = new Label("Available balance:");
         TextField txtSaldo = new TextField();
 
-        Label lblValeAlimentacao = new Label("Vale Alimentação:");
+        Label lblValeAlimentacao = new Label("Food Voucher:");
         TextField txtValeAlimentacao = new TextField();
 
-        Button btnSalvar = new Button("Salvar");
+        Button btnSalvar = new Button("Save");
 
         // Ação do botão salvar
         btnSalvar.setOnAction(e -> {
@@ -42,7 +42,7 @@ public class ContaView extends Application {
 
             // Validações básicas
             if (nome.isEmpty() || saldo.isEmpty() || valeAlimentacao.isEmpty()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Preencha todos os campos obrigatórios.");
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Fill in all mandatory fields.");
                 alert.showAndWait();
                 return;
             }
@@ -56,7 +56,7 @@ public class ContaView extends Application {
             // Envia para o backend
             enviarConta(conta);
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Conta salva com sucesso!");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Account saved successfully!");
             alert.showAndWait();
         });
 
@@ -75,7 +75,7 @@ public class ContaView extends Application {
         // Configuração da janela
         Scene scene = new Scene(grid, 400, 300);
         stage.setScene(scene);
-        stage.setTitle("Cadastrar Conta");
+        stage.setTitle("Register Account");
         stage.show();
     }
 
@@ -84,7 +84,7 @@ public class ContaView extends Application {
         String url = "http://localhost:8080/contas";
         try {
             restTemplate.postForObject(url, conta, Conta.class);
-            System.out.println("Conta enviada com sucesso: " + conta);
+            System.out.println("Account sent successfully: " + conta);
         } catch (Exception e) {
             e.printStackTrace();
         }

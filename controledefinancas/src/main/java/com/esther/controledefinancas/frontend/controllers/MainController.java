@@ -23,7 +23,7 @@ public class MainController {
     public void abrirTelaConta(ActionEvent event) {
         try {
             Stage stage = new Stage();
-            stage.setTitle("Cadastrar Conta");
+            stage.setTitle("Register Accounts");
             ContaView contaView = new ContaView();
             contaView.start(stage);
         } catch (Exception e) {
@@ -35,7 +35,7 @@ public class MainController {
     public void abrirTelaCartao(ActionEvent event) {
         try {
             Stage stage = new Stage();
-            stage.setTitle("Cadastrar Cartão");
+            stage.setTitle("Register Card");
             CartaoView cadastrarCartaoView = new CartaoView();
             cadastrarCartaoView.start(stage);
         } catch (Exception e) {
@@ -49,7 +49,7 @@ public class MainController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/esther/controledefinancas/frontend/views/gerenciar_compras.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
-            stage.setTitle("Gerenciar Compras");
+            stage.setTitle("Register Purchases");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -60,9 +60,9 @@ public class MainController {
     @FXML
     public void abrirRelatorios() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Relatórios");
+        alert.setTitle("My Financial Summary");
         alert.setHeaderText(null);
-        alert.setContentText("Abrindo o gerenciamento de relatórios...");
+        alert.setContentText("Opening report management...");
         alert.showAndWait();
     }
 

@@ -12,14 +12,14 @@ public class MainWindow extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Controle de Finanças");
+        primaryStage.setTitle("SMART BUDGET");
 
         // Botões para as funcionalidades
-        Button btnContas = new Button("Cadastrar Conta");
-        Button btnCartoes = new Button("Cadastar Cartão");
-        Button btnCompras = new Button("Gerenciar Compras");
-        Button btnRelatorios = new Button("Gerar Relatórios");
-        Button btnSair = new Button("Sair");
+        Button btnContas = new Button("Accounts");
+        Button btnCartoes = new Button("Card");
+        Button btnCompras = new Button("Add Expense");
+        Button btnRelatorios = new Button("My Financial Summary");
+        Button btnSair = new Button("Exit");
 
         // Ações dos botões
 

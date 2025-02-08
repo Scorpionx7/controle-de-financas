@@ -17,7 +17,7 @@ public class ControleDeFinancasFX extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/frontend/views/main.fxml"));
         Parent root = loader.load();
 
-        primaryStage.setTitle("Controle de Finanças");
+        primaryStage.setTitle("SMART BUDGET");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }

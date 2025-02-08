@@ -13,18 +13,18 @@ public class RelatoriosView extends Application {
 
     @Override
     public void start(Stage stage) {
-        stage.setTitle("Gerar Relatórios");
+        stage.setTitle("Generate Reports");
 
-        Label lblDataInicio = new Label("Data Início:");
+        Label lblDataInicio = new Label("Start Date:");
         DatePicker dpDataInicio = new DatePicker();
 
-        Label lblDataFim = new Label("Data Fim:");
+        Label lblDataFim = new Label("End Date:");
         DatePicker dpDataFim = new DatePicker();
 
-        Button btnGerar = new Button("Gerar Relatório");
+        Button btnGerar = new Button("Generate Reports");
         btnGerar.setOnAction(event -> {
             // Implementar lógica para gerar relatório e salvar em PDF
-            System.out.println("Relatório gerado de " + dpDataInicio.getValue() + " até " + dpDataFim.getValue());
+            System.out.println("Report generated from " + dpDataInicio.getValue() + " to " + dpDataFim.getValue());
         });
 
         VBox layout = new VBox(10);

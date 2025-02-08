@@ -1,10 +1,7 @@
 package com.esther.controledefinancas.backend.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -18,6 +15,10 @@ public class CartaoDeCredito {
     private String nome;
     private double limite; // Limite total do cartão
     private double gastoAtual; // Gasto atual do cartão
+
+    @ManyToOne
+    @JoinColumn(name = "conta_id")
+    private Conta conta;
 
     public double getLimiteDisponivel(){
         return limite - gastoAtual;
@@ -85,10 +86,16 @@ public class CartaoDeCredito {
         this.gastoAtual = gastoAtual;
     }
 
+    public Conta getConta() {
+        return conta;
+    }
+
+    public void setConta(Conta conta) {
+        this.conta = conta;
+    }
+
     @Override
     public String toString() {
-        return "CartaoDeCredito{" +
-                "nome='" + nome + '\'' +
-                '}';
+        return nome;
     }
 }

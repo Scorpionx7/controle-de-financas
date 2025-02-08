@@ -25,30 +25,30 @@ public class ComprasView extends Application {
         grid.setVgap(10);
 
         // Campos do formulário
-        Label lblDescricao = new Label("Descrição da Compra:");
+        Label lblDescricao = new Label("Purchase Description:");
         TextField txtDescricao = new TextField();
 
-        Label lblValor = new Label("Valor:");
+        Label lblValor = new Label("Value:");
         TextField txtValor = new TextField();
 
-        Label lblFormaPagamento = new Label("Forma de Pagamento:");
+        Label lblFormaPagamento = new Label("Payment Method:");
         ComboBox<String> cmbFormaPagamento = new ComboBox<>();
         cmbFormaPagamento.getItems().addAll("A_VISTA", "CARTAO", "VALE_ALIMENTACAO");
 
-        Label lblParcelado = new Label("Parcelado:");
+        Label lblParcelado = new Label("Parcel:");
         CheckBox chkParcelado = new CheckBox();
 
-        Label lblQtdParcelas = new Label("Quantidade de Parcelas:");
+        Label lblQtdParcelas = new Label("Number of Installments:");
         TextField txtQtdParcelas = new TextField();
         txtQtdParcelas.setDisable(true); // Desativado por padrão
 
-        Label lblConta = new Label("Conta:");
+        Label lblConta = new Label("Account:");
         ComboBox<Conta> cmbConta = new ComboBox<>();
 
-        Label lblCartao = new Label("Cartão:");
+        Label lblCartao = new Label("Card:");
         ComboBox<CartaoDeCredito> cmbCartao = new ComboBox<>();
 
-        Label lblLimiteDisponivel = new Label("Limite Disponível: R$ 0.00");
+        Label lblLimiteDisponivel = new Label("Available Limit: R$ 0.00");
 
         // Habilita/desabilita o campo de parcelas baseado no checkbox
         chkParcelado.setOnAction(e -> txtQtdParcelas.setDisable(!chkParcelado.isSelected()));
@@ -57,11 +57,11 @@ public class ComprasView extends Application {
         cmbCartao.setOnAction(e -> {
             CartaoDeCredito cartaoSelecionado = cmbCartao.getSelectionModel().getSelectedItem();
             if (cartaoSelecionado != null) {
-                lblLimiteDisponivel.setText("Limite Disponível: R$ " + cartaoSelecionado.getLimiteDisponivel());
+                lblLimiteDisponivel.setText("Available Limit: R$ " + cartaoSelecionado.getLimiteDisponivel());
             }
         });
 
-        Button btnSalvar = new Button("Salvar");
+        Button btnSalvar = new Button("Save");
 
         // Ação do botão salvar
         btnSalvar.setOnAction(e -> {
@@ -75,25 +75,25 @@ public class ComprasView extends Application {
 
             // Validações básicas
             if (descricao.isEmpty() || valor.isEmpty() || formaPagamento == null) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Preencha todos os campos obrigatórios.");
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Fill in all mandatory fields.");
                 alert.showAndWait();
                 return;
             }
 
             if (formaPagamento.equals("CARTAO") && cartaoSelecionado == null) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Selecione um cartão.");
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Select a card.");
                 alert.showAndWait();
                 return;
             }
 
             if (formaPagamento.equals("VALE_ALIMENTACAO") && contaSelecionada == null) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Selecione uma conta.");
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Select an account.");
                 alert.showAndWait();
                 return;
             }
 
             if (parcelado && (qtdParcelas.isEmpty() || Integer.parseInt(qtdParcelas) <= 0)) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Insira uma quantidade válida de parcelas.");
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Enter a valid number of installments.");
                 alert.showAndWait();
                 return;
             }
@@ -116,7 +116,7 @@ public class ComprasView extends Application {
             // Envia para o backend
             enviarCompra(compra);
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Compra salva com sucesso!");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Purchase saved successfully!");
             alert.showAndWait();
         });
 
@@ -149,7 +149,7 @@ public class ComprasView extends Application {
         // Configuração da janela
         Scene scene = new Scene(grid, 600, 500);
         stage.setScene(scene);
-        stage.setTitle("Gerenciar Compras");
+        stage.setTitle("Register purchases");
         stage.show();
 
         // Carregar dados do backend
@@ -184,7 +184,7 @@ public class ComprasView extends Application {
         String url = "http://localhost:8080/compras";
         try {
             restTemplate.postForObject(url, compra, Compra.class);
-            System.out.println("Compra enviada com sucesso: " + compra);
+            System.out.println("Purchase sent successfully: " + compra);
         } catch (Exception e) {
             e.printStackTrace();
         }

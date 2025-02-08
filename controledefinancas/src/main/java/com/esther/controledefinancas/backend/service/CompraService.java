@@ -222,7 +222,7 @@ public class CompraService {
 
     public List<ContaDTO> listarTodas() {
         return contaRepository.findAll().stream()
-                .map(conta -> new ContaDTO(conta.getId(), conta.getSaldo(), conta.getValeAlimentacao()))
+                .map(conta -> new ContaDTO(conta.getId(),conta.getNome(), conta.getSaldo(), conta.getLimite(),conta.getValeAlimentacao()))
                 .collect(Collectors.toList());
     }
 

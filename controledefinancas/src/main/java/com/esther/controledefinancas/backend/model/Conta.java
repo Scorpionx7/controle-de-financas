@@ -1,11 +1,11 @@
 package com.esther.controledefinancas.backend.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,6 +18,9 @@ public class Conta {
     private double saldo;
     private double limite;
     private double valeAlimentacao;
+
+    @OneToMany(mappedBy = "conta",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartaoDeCredito> cartoes = new ArrayList<>();
 
     public Conta() {
     }
@@ -74,10 +77,16 @@ public class Conta {
         this.limite = limite;
     }
 
+    public List<CartaoDeCredito> getCartoes() {
+        return cartoes;
+    }
+
+    public void setCartoes(List<CartaoDeCredito> cartoes) {
+        this.cartoes = cartoes;
+    }
+
     @Override
     public String toString() {
-        return "Conta{" +
-                "nome='" + nome + '\'' +
-                '}';
+        return nome;
     }
 }

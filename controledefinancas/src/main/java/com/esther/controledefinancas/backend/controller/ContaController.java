@@ -33,4 +33,11 @@ public class ContaController {
         List<ContaDTO> contas = contaService.listarTodas();
         return ResponseEntity.ok(contas);
     }
+
+    @PostMapping("/{contaId}/cartoes/{cartaoId}")
+    public ResponseEntity<String> vincularCartaoAConta(@PathVariable Long contaId, @PathVariable Long cartaoId) {
+        contaService.vincularCartao(contaId, cartaoId);
+        return ResponseEntity.ok("Cartão vinculado à conta com sucesso!");
+    }
+
 }
