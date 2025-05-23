@@ -1,0 +1,10 @@
+# Pastas e arquivos gerados pela IDE (IntelliJ IDEA)
+.idea/
+*.iml
+
+# Pasta de saída de compilação (Maven/Gradle)
+target/
+
+# Para projetos Spring Boot ou outras configurações
+*.log
+temp/
