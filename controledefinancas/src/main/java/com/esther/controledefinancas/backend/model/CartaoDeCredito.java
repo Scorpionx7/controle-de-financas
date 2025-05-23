@@ -54,46 +54,6 @@ public class CartaoDeCredito {
         this.gastoAtual = gastoAtual;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public double getLimite() {
-        return limite;
-    }
-
-    public void setLimite(double limite) {
-        this.limite = limite;
-    }
-
-    public double getGastoAtual() {
-        return gastoAtual;
-    }
-
-    public void setGastoAtual(double gastoAtual) {
-        this.gastoAtual = gastoAtual;
-    }
-
-    public Conta getConta() {
-        return conta;
-    }
-
-    public void setConta(Conta conta) {
-        this.conta = conta;
-    }
-
     @Override
     public String toString() {
         return nome;

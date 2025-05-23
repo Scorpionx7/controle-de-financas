@@ -77,7 +77,7 @@ public class CompraService {
     }
 
     private void validarLimiteCartao(Long cartaoId, double valor) {
-        CartaoDeCredito cartao = cartaoService.buscarCartaoPorId(cartaoId);
+        CartaoDeCredito cartao = cartaoService.getCartaoById(cartaoId);
         if (cartao.getLimiteDisponivel() < valor) {
             throw new RuntimeException("Limite insuficiente no cartão para realizar a compra.");
         }

@@ -21,44 +21,4 @@ public class ContaDTO {
         this.limite = limite;
         this.valeAlimentacao = valeAlimentacao;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Double getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(Double saldo) {
-        this.saldo = saldo;
-    }
-
-    public Double getValeAlimentacao() {
-        return valeAlimentacao;
-    }
-
-    public void setValeAlimentacao(Double valeAlimentacao) {
-        this.valeAlimentacao = valeAlimentacao;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public double getLimite() {
-        return limite;
-    }
-
-    public void setLimite(double limite) {
-        this.limite = limite;
-    }
 }
