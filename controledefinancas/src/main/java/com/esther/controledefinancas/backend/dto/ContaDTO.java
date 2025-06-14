@@ -2,6 +2,8 @@ package com.esther.controledefinancas.backend.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ContaDTO {
 
@@ -10,6 +12,8 @@ public class ContaDTO {
     private Double saldo;
     private double limite;
     private Double valeAlimentacao;
+    private List<CartaoDeCreditoDTO> cartoes;
+
 
     public ContaDTO() {
     }
@@ -20,5 +24,6 @@ public class ContaDTO {
         this.saldo = saldo;
         this.limite = limite;
         this.valeAlimentacao = valeAlimentacao;
+
     }
 }

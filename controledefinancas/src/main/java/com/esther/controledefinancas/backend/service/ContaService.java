@@ -1,5 +1,6 @@
 package com.esther.controledefinancas.backend.service;
 
+import com.esther.controledefinancas.backend.dto.CartaoDeCreditoDTO;
 import com.esther.controledefinancas.backend.dto.ContaDTO;
 import com.esther.controledefinancas.backend.model.CartaoDeCredito;
 import com.esther.controledefinancas.backend.model.Conta;
@@ -46,6 +47,8 @@ public class ContaService {
                 .map(conta -> new ContaDTO(conta.getId(),conta.getNome(), conta.getSaldo(), conta.getLimite(), conta.getValeAlimentacao()))
                 .collect(Collectors.toList());
     }
+
+
 
     public void vincularCartao(Long contaId, Long cartaoId) {
         Conta conta = contaRepository.findById(contaId)

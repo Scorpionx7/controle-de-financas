@@ -1,6 +1,7 @@
 package com.esther.controledefinancas.backend.model;
 
 
+
 import jakarta.persistence.*;
 import lombok.Data;
 

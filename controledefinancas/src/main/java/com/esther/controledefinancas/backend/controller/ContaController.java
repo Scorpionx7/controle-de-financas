@@ -1,5 +1,6 @@
 package com.esther.controledefinancas.backend.controller;
 
+import com.esther.controledefinancas.backend.dto.CartaoDeCreditoDTO;
 import com.esther.controledefinancas.backend.dto.ContaDTO;
 import com.esther.controledefinancas.backend.model.Conta;
 import com.esther.controledefinancas.backend.service.ContaService;
@@ -8,9 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/contas")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ContaController {
 
     @Autowired
@@ -24,7 +27,7 @@ public class ContaController {
     }
 
     @GetMapping("/{id}/saldo")
-    public double consultarSaldo(@PathVariable Long id) {
+    public double consultarSaldo(@PathVariable ("id") Long id) {
         return contaService.consultarSaldo(id);
     }
 
@@ -34,21 +37,37 @@ public class ContaController {
         return ResponseEntity.ok(contas);
     }
 
+
     @PostMapping("/{contaId}/cartoes/{cartaoId}")
-    public ResponseEntity<String> vincularCartaoAConta(@PathVariable Long contaId, @PathVariable Long cartaoId) {
+    public ResponseEntity<String> vincularCartaoAConta(@PathVariable ("contaId") Long contaId, @PathVariable ("cartaoId") Long cartaoId) {
         contaService.vincularCartao(contaId, cartaoId);
         return ResponseEntity.ok("Cartão vinculado à conta com sucesso!");
     }
 
-    @GetMapping("/{id}") // Novo: Buscar conta por ID
-    public ResponseEntity<Conta> buscarContaPorId(@PathVariable Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<ContaDTO> buscarContaPorId(@PathVariable Long id) {
         return contaService.findById(id)
-                .map(ResponseEntity::ok)
+                .map(conta -> {
+                    // Mapeia a entidade Conta para ContaDTO
+                    ContaDTO contaDTO = new ContaDTO(
+                            conta.getId(),
+                            conta.getNome(),
+                            conta.getSaldo(),
+                            conta.getLimite(),
+                            conta.getValeAlimentacao()
+                    );
+
+                     contaDTO.setCartoes(conta.getCartoes().stream()
+                      .map(cartao -> new CartaoDeCreditoDTO(cartao.getId(), cartao.getNome(), cartao.getLimite(), cartao.getGastoAtual(), null))
+                             .collect(Collectors.toList()));
+                    return ResponseEntity.ok(contaDTO);
+                })
                 .orElse(ResponseEntity.notFound().build());
     }
 
+
     @PutMapping("/{id}") // Novo: Atualizar Conta
-    public ResponseEntity<Conta> atualizarConta(@PathVariable Long id, @RequestBody Conta conta) {
+    public ResponseEntity<Conta> atualizarConta(@PathVariable ("id") Long id, @RequestBody Conta conta) {
         try {
             Conta contaAtualizada = contaService.atualizarConta(id, conta);
             return ResponseEntity.ok(contaAtualizada);
@@ -58,7 +77,7 @@ public class ContaController {
     }
 
     @DeleteMapping("/{id}") // Novo: Deletar Conta
-    public ResponseEntity<Void> deletarConta(@PathVariable Long id) {
+    public ResponseEntity<Void> deletarConta(@PathVariable ("id") Long id) {
         try {
             contaService.deletarConta(id);
             return ResponseEntity.noContent().build(); // Resposta 204 No Content
