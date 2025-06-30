@@ -1,60 +1,84 @@
-# 🛠️ Sistema de Controle Financeiro
+# 🛠️ Sistema de Controle Financeiro - API
 
-Este é um projeto pessoal desenvolvido para facilitar o gerenciamento de finanças pessoais, permitindo o controle de gastos, 
-parcelas e saldos de forma simples e intuitiva.
+Este é o back-end do projeto de Controle Financeiro, desenvolvido para ser uma API REST que gerencia todas as regras de negócio e a persistência dos dados.
 
-A ideia surgiu da necessidade de abandonar o uso de blocos de notas para registrar despesas mensais e criar algo mais prático, 
-que pudesse manter todas as informações atualizadas automaticamente.
+A ideia original de abandonar blocos de notas evoluiu para uma arquitetura desacoplada, onde este serviço centraliza a lógica de finanças e o front-end (desenvolvido em Angular) consome os dados.
 
 ---
 
-## 🌟 Funcionalidades
+## ✨ Arquitetura
 
-- **Gerenciamento de contas e gastos:**
-    - Controle de parcelas restantes.
-    - Visualização do saldo disponível para gastos.
-    - Registro e acompanhamento de despesas mensais.
+O sistema agora segue uma arquitetura Cliente-Servidor:
 
-- **Interface amigável:**
-    - Desenvolvida em **JavaFX**, oferece uma experiência visual simples e funcional.
+-   **Back-end (Este repositório):** Uma API RESTful desenvolvida com Spring Boot, responsável por todas as operações de CRUD, cálculos e gerenciamento de dados.
+-   **Front-end:** Uma aplicação SPA (Single Page Application) em Angular que consome esta API para fornecer a interface ao usuário.
+    -   Acesse o repositório do front-end [**aqui**](https://github.com/Scorpionx7/controle-financas-frontend).
+
+---
+
+## 🌟 Funcionalidades da API
+
+-   **Endpoints para gerenciamento de contas e gastos:**
+    -   API para controle de parcelas restantes.
+    -   Cálculo do saldo disponível para gastos.
+    -   Endpoints para registro e acompanhamento de despesas mensais.
 
 ---
 
 ## 🔧 Tecnologias Utilizadas
 
-- **Java 21**: Base sólida e moderna para o desenvolvimento.
-- **H2 Database**: Escolhido por sua leveza e facilidade de uso, substituindo o MySQL inicial para simplificar a configuração e permitir que outras pessoas testem o sistema sem dependências adicionais.
-- **JPA/Hibernate**: Para o gerenciamento de dados e mapeamento objeto-relacional.
-- **JavaFX**: Responsável pela interface gráfica, tornando o sistema visualmente funcional.
+-   **Java 21**: Base sólida e moderna para o desenvolvimento do back-end.
+-   **Spring Boot 3**: Framework principal para a criação da API REST.
+-   **PostgreSQL**: Banco de dados relacional robusto para persistência dos dados.
+-   **JPA/Hibernate**: Para o mapeamento objeto-relacional e persistência de dados.
+-   **Maven**: Gerenciador de dependências e build do projeto.
 
 ---
 
-## 🚀 Como Executar o Projeto
+## 🚀 Como Executar o Back-end
 
 ### Pré-requisitos:
-- **Java 21** ou superior instalado.
-- **Maven** configurado no ambiente.
+
+-   **Java 21** ou superior instalado.
+-   **Maven** configurado no ambiente.
+-   **PostgreSQL** instalado e um banco de dados criado para a aplicação.
 
 ### Passos para executar:
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/Scorpionx7/controle-de-financas.git
-   
-   cd controle-de-financas
-   ```
-2. **Compile e Execute**:
-   ```bash
-   mvn spring-boot:run
-   ```
-3**Acesse a Aplicação**:
-   Abra o navegador e acesse:
-    - [http://localhost:8080/compras](http://localhost:8080/compras) 
+
+1.  Clone o repositório:
+    ```bash
+    git clone [https://github.com/Scorpionx7/controle-de-financas.git](https://github.com/Scorpionx7/controle-de-financas.git)
+    cd controle-de-financas
+    ```
+2.  **Configure a conexão com o Banco de Dados**:
+    -   Abra o arquivo `src/main/resources/application.properties`.
+    -   Adicione ou altere as seguintes propriedades com os dados do seu banco PostgreSQL:
+
+    ```properties
+    # Exemplo de configuração para o PostgreSQL
+    spring.datasource.url=jdbc:postgresql://localhost:5432/nome_do_seu_banco
+    spring.datasource.username=seu_usuario
+    spring.datasource.password=sua_senha
+    
+    # Configurações do Hibernate
+    spring.jpa.hibernate.ddl-auto=update
+    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+    ```
+    3.  **Compile e Execute o servidor**:
+    ```bash
+    mvn spring-boot:run
+    ```
+4.  **API estará disponível**:
+    Após a execução, a API estará rodando e pronta para receber requisições na porta `8080`.
+    -   Exemplo de endpoint: `http://localhost:8080/compras`
+
+    > **Nota:** Este serviço não possui interface gráfica. Ele deve ser executado em conjunto com a aplicação [**front-end**](https://github.com/Scorpionx7/controle-financas-frontend).
 
 ---
 
----
+## 📧 Contato
 
-## 📧 **Contato**
 Entre em contato para dúvidas ou sugestões!
-- 🌐 [**LinkedIn**](https://www.linkedin.com/in/estherrezende/)
-- 📧 **E-mail:** [rezendealvesesther@gmail.com](mailto:rezendealvesesther@gmail.com)
+
+-   🌐 [**LinkedIn**](https://www.linkedin.com/in/estherrezende/)
+-   📧 **E-mail:** [rezendealvesesther@gmail.com](mailto:rezendealvesesther@gmail.com)
