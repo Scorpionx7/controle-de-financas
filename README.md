@@ -47,7 +47,7 @@ O sistema agora segue uma arquitetura Cliente-Servidor:
 
 1.  Clone o repositório:
     ```bash
-    git clone [https://github.com/Scorpionx7/controle-de-financas.git](https://github.com/Scorpionx7/controle-de-financas.git)
+    git clone https://github.com/Scorpionx7/controle-de-financas.git
     cd controle-de-financas
     ```
 2.  **Configure a conexão com o Banco de Dados**:
@@ -64,10 +64,10 @@ O sistema agora segue uma arquitetura Cliente-Servidor:
     spring.jpa.hibernate.ddl-auto=update
     spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
     ```
-    3.  **Compile e Execute o servidor**:
-    ```bash
-    mvn spring-boot:run
-    ```
+3.  **Compile e Execute o servidor**:
+   ```bash
+   mvn spring-boot:run
+   ```
 4.  **API estará disponível**:
     Após a execução, a API estará rodando e pronta para receber requisições na porta `8080`.
     -   Exemplo de endpoint: `http://localhost:8080/compras`
